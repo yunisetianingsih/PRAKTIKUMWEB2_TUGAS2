@@ -82,7 +82,7 @@ Sistem informasi tentang persuratan berbasis web diperlukan untuk mempermudah si
         }
         ```
 
-     3. **tampilDataSurat**  
+     3. **tampilDataSuratTugas**  
         Metode ini digunakan untuk mengambil semua data dari tabel surat_tugas yang ada pada db_surat (Database) setelah berhasil terkoneksi dan kemudian menampilkannya. Berikut merupakan sintaksnya:
         
         ```php
