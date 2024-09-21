@@ -17,13 +17,13 @@
 
 CRUD adalah singkatan dari Create, Read, Update, Delete, yang mewakili empat operasi dasar dalam proses pengelolaan data yang ada di dalam database. Implementasi CRUD biasanya digunakan dalam aplikasi berbasis web untuk menambahkan (Create), menampilkan (Read), memperbarui (Update), dan menghapus (Delete) data dari sistem database. Ketika OOP dan CRUD diimplementasikan secara bersama memungkinkan kita untuk membangun aplikasi web yang modular, terstruktur, dan lebih mudah ketika melakukan maintance, di mana operasi CRUD diatur dalam kelas dan metode yang berhubungan dengan data dan perilaku objek.<hr>
 
-Sistem informasi tentang persuratan berbasis web diperlukan untuk mempermudah sistem pesuratan. Berdasarkan studi kasus surat_tugas dan permohonan_izin dilakukan pembuatan tampilan berbasis OOP dengan mengambil data dari database MYSQL.
+Sistem informasi tentang persuratan berbasis web diperlukan untuk mempermudah sistem pesuratan. Berdasarkan studi kasus yang didapatkan yaitu surat_tugas dan permohonan_izin, dilakukan pembuatan tampilan berbasis OOP dengan mengambil data dari database MYSQL.<br>
 
 1. **Data pada database MYSQL**  
    Data base dengan nama ‘db_surat’ yang terdiri atas 2 tabel yaitu permohonan_izin dan surat_tugas.
 
    ***Database Mysql 'db_surat'<br>***
-   ![Screenshot 2024-09-20 204608](https://github.com/user-attachments/assets/c2a8984e-4e89-44be-88e6-ee25ac45f2e5)
+   ![Screenshot 2024-09-20 204608](https://github.com/user-attachments/assets/dfce77ff-8686-4842-aa5a-ebe3b2def044)
 
     ***Database Mysql tabel 'permohonan_izin'<br>***
    ![Screenshot 2024-09-20 204705](https://github.com/user-attachments/assets/93bf42a4-8ee7-4e42-94c5-89ddd09acf2f)
@@ -32,8 +32,8 @@ Sistem informasi tentang persuratan berbasis web diperlukan untuk mempermudah si
    ![Screenshot 2024-09-20 204719](https://github.com/user-attachments/assets/eee8a5e0-d279-44da-bff9-ff31fdea71ae)
 
 
-3. **Membuat kelas ‘Database’ dan menghubungkan ke Database Mysql**  
-   Untuk dapat menghubungkan ke Database dan melakukan pengambilan data saya membuat sebuah class dengan nama ‘Database’ yang berisi koneksi ke Database MYSQL. Dalam class data berisi properti dan metode.
+2. **Membuat kelas ‘Database’ dan menghubungkan koneksi ke Database Mysql**  <br>
+   Untuk dapat menghubungkan ke Database Mysql dan melakukan pengambilan data saya membuat sebuah class dengan nama ‘Database’ yang berisi koneksi ke Database MYSQL. Dalam class data berisi properti dan metode.<br>
 
    - **Membuat class**  
      Class nama_kelas {}
@@ -51,9 +51,9 @@ Sistem informasi tentang persuratan berbasis web diperlukan untuk mempermudah si
      private $database = "db_surat";
      protected $koneksi;
      ```
-     Properti tersebut digunakan untuk menyimpan informasi alamat server, username, password, nama database, dan koneksi. Yang digunakan untuk membuat koneksi ke Database MYSQL.
+     Properti tersebut digunakan untuk menyimpan informasi alamat server, username, password, nama database, dan koneksi yang digunakan untuk membuat koneksi ke Database MYSQL.<br>
 
-   - **Fungsi (Metode) sebagai tautan ke database**  
+   - **Metode (Fungsi) yang digunakan sebagai tautan ke database**  
      Untuk membuat koneksi ke database menggunakan fungsi `__construct()`.
      ```php
      public function __construct() {
@@ -63,10 +63,10 @@ Sistem informasi tentang persuratan berbasis web diperlukan untuk mempermudah si
          }
      }
      ```
-     Metode construct di atas merupakan sebuah metode yang secara otomatis dipanggil saat objek dari kelas Database dibuat. Dalam hal ini fungsi tersebut digunakan untuk membuat koneksi ke database. Fungsi `mysqli_connect()` digunakan untuk membuat koneksi ke database MySQL dengan menggunakan parameter yang terdiri dari property yang ada pada class ‘Database’ (host, username, password, database). Jika koneksi berhasil akan disimpan pada property `$koneksi`.
+     Metode construct di atas merupakan sebuah metode yang secara otomatis dipanggil dan yang pertama kali dieksekusi. Dalam hal ini fungsi tersebut digunakan untuk membuat koneksi ke database. Fungsi `mysqli_connect()` digunakan untuk membuat koneksi ke database MySQL dengan menggunakan parameter yang terdiri dari property yang ada pada class ‘Database’ (host, username, password, database). Jika koneksi berhasil akan disimpan pada property `$koneksi`.
 
-   - **Membuat Metode**  
-     Dalam class Database terdapat 2 metode yang aksesibilitasnya public karena bisa diwariskan ke kelas turunannya, nantinya kelas turunan tersebut dapat menggunakan metode public ini sebagaimana adanya atau melakukan override (menimpa) metode tersebut dengan metode yang lebih spesifik. Metode yang ada di kelas Database:
+   - **Membuat Metode (Fungsi) Tambahan**  
+     Dalam class Database terdapat 2 metode yang aksesibilitasnya bersifat public karena bisa diwariskan ke kelas turunannya, nantinya kelas turunan tersebut dapat menggunakan metode public ini sebagaimana adanya atau melakukan override (menimpa) metode tersebut dengan metode yang lebih spesifik. Metode yang ada di kelas Database yaitu:
 
      1. **tampilDataPermohonan**  
         Metode ini digunakan untuk mengambil semua data dari tabel permohonan_izin yang ada pada db_surat (Database) yang ada di Mysql setelah berhasil terkoneksi, dan kemudian menampilkannya. Berikut merupakan sintaks yang digunakan untuk membuat metode tampilDataPermohonan:
@@ -97,7 +97,7 @@ Sistem informasi tentang persuratan berbasis web diperlukan untuk mempermudah si
         ```
 
    - **Menerapkan Enkapulasi**  
-     Berdasarkan logika studi kasus, saya menerapkan enkapulasi dalam class Database yaitu pada property dan metodenya.
+     Berdasarkan logika studi kasus yang didapatkan , saya menerapkan enkapulasi dalam class Database yaitu pada bagian property dan metodenya.
 
         - Penerapan enkapulasi pada atribut(property) menjadi private:
           ```php
@@ -106,7 +106,7 @@ Sistem informasi tentang persuratan berbasis web diperlukan untuk mempermudah si
           private $password = ""; 
           private $database = "db_surat";
           ```
-          Penerapan enkapulasi pada studi kasus ini terjadi pada kelas database, dimana semua property seperti bersifat private yang artinya hanya dapat diakses dari dalam class ‘Database’ itu sendiri. Enkapulasi pada property ini diharapkan dapat melindungi data sensitif karena 4 properti tersebut merupakan data yang sensitif dan harus dilindungi untuk mencegah kebocoran data.
+          Penerapan enkapulasi pada studi kasus ini terjadi pada kelas database, dimana semua property bersifat private yang artinya hanya dapat diakses dari dalam class ‘Database’ itu sendiri. Enkapulasi pada property ini diharapkan dapat melindungi data sensitif karena 4 properti tersebut merupakan data yang sensitif dan harus dilindungi untuk mencegah kebocoran data karena adanya pengaksesan di kelas lain.
 
         - Penerapan enkapulasi pada atribut (property) menjadi protected:
           ```php
@@ -114,11 +114,11 @@ Sistem informasi tentang persuratan berbasis web diperlukan untuk mempermudah si
           ```
           Atribut(property) $koneksi bersifat protected yang berarti dapat diakses oleh kelas itu sendiri dan kelas lain yang mewarisi dari Database (kelas turunannya). Dengan adanya enkapulasi ini kelas turunan dapat melakukan koneksi ke dalam database. Dengan menggunakan atribut(property) private dan protected mencegah adanya akses dari luar ke data penting yang mungkin membahayakan keamanan data.
 
-4. **Melakukan Inheritance (Pewarisan)**  
-   Berdasarkan studi kasus permohonan_izin dan surat_tugas, class ‘Database’ merupakan kelas induk yang atribut(property) dan metodenya akan diwariskan kepada kelas turunannya. Pada studi kasus ini ada 2 kelas turunan dari class Database yaitu class PermohonanIzinTI dan class SuratTugasPelatihan.
+3. **Melakukan Inheritance (Pewarisan)**  
+   Berdasarkan studi kasus permohonan_izin dan surat_tugas, class ‘Database’ merupakan kelas induk yang atribut(property) dan metodenya akan diwariskan kepada kelas turunannya. Pada studi kasus ini saya membuat 2 kelas turunan dari class 'Database' yaitu class 'PermohonanIzinTI' dan class 'SuratTugasPelatihan'.
 
    - **Kelas turunan SuratTugasPelatihan**  
-     Kelas ini merupakan kelas turunan dari kelas database yang mengambil data dari Database Mysql. Kelas ini nantinya akan melakukan pengelolaan data surat tugas untuk keperluan Pelatihan.
+     Kelas ini merupakan kelas turunan dari kelas 'Database' yang mengambil data dari Database Mysql. Kelas ini nantinya akan melakukan pengelolaan data surat tugas untuk keperluan Pelatihan.
      
      ```php
      <?php
@@ -136,10 +136,10 @@ Sistem informasi tentang persuratan berbasis web diperlukan untuk mempermudah si
      }
      ```
 
-     Untuk membuat sebuah class turunan baru dapat menggunakan sintaks `class nama_kelas_turunan extends nama_kelas_induk {}`. Dalam kelas turunan ini tidak ada penambahan property baru. Pada kelas turunan SuratTugasPelatihan terdapat satu metode tampilDataSuratTugas yang akan menampilkan data surat tugas untuk kondisi keperluannya merupakan Pelatihan.
+     Untuk membuat sebuah kelas turunan baru dapat menggunakan sintaks `class nama_kelas_turunan extends nama_kelas_induk {}`. Dalam kelas turunan ini saya membuatnya tidak ada penambahan property baru hanya ada penambahan metode. Pada kelas turunan SuratTugasPelatihan terdapat satu metode `tampilDataSuratTugas()` yang akan menampilkan data surat tugas untuk kondisi keperluannya merupakan 'Pelatihan', metode ini melakukan override dari metode yang ada di kelas induk.
 
    - **Kelas turunan PermohonanIzinTI**  
-     Kelas ini merupakan kelas turunan yang akan mewarisi atribut(property) dan metode dari kelas induk ‘Database’ dan juga koneksinya untuk mengakses Database di Mysql. Kelas ini akan melakukan pengelolaan data permohonan izin dari para tenaga kerja yang berada di unit kerja Teknik Informatika saja.
+     Kelas ini merupakan kelas turunan yang akan mewarisi atribut (property) dan metode dari kelas induk ‘Database’ dan juga koneksinya untuk mengakses Database di Mysql. Kelas ini akan melakukan pengelolaan data permohonan izin dari para tenaga kerja yang berada di unit kerja Teknik Informatika saja.
      ```php
      class PermohonanIzinTI extends Database {
          public function __construct() {
@@ -157,7 +157,78 @@ Sistem informasi tentang persuratan berbasis web diperlukan untuk mempermudah si
          }
      }
      ```
+     Dalam kelas turunan ini tidak menambahkan property baru, tetapi hanya menggunakan kembali property yang telah di definisikan di kelas induk (‘Database’). Dengan memanfaatkan prinsip pewarisan dari kelas 'Database', kelas ini dapat mengelola koneksi database dan melakukan query dengan cara yang lebih terstruktur.
+     
+4. **Melakukan Polymorphism**<br>
+   Berdasarkan class induk (‘Database’) dan kelas turunan (‘PermohonanIzinIT’ dan ‘SuratTugasPelatihan’) menerapkan 2 peran polimorfisme .<br>
+      -	**Kelas Induk (‘Database’)** <br>
+        Mempunyai 2 metode yang berbeda yaitu :<br>
+        - Metode tampilDataPermohonan()<br>
+         Merupakan metode yang digunakan untuk menampilkan seluruh data permohonan izin dari database<br>
+       	
+       	 ```php
+        public function tampilDataPermohonan() {
+            $data_permohonan = mysqli_query($this->koneksi, "SELECT * FROM permohonan_izin");
+            $hasil_data = [];
+            while($row = mysqli_fetch_array($data_permohonan)) {    
+                $hasil_data[] = $row;
+            }
+            return $hasil_data;
+        }
+        ```
+           - Metode tampilDataSuratTugas()<br>
+       	Merupakan metode yang digunakan untuk menampilkan seluruh data surat tugas dari database<br>
 
+       	 ```php
+        public function tampilDataSuratTugas() {
+            $data_surat_tugas = mysqli_query($this->koneksi, "SELECT * FROM surat_tugas");
+            $hasil_data = [];
+            while($row = mysqli_fetch_array($data_surat_tugas)) {
+                $hasil_data[] = $row;
+            }
+            return $hasil_data;
+        }
+        ```
+      -	**Kelas PermohonanIzinTI**<br>
+          Menggunakan metode yang sama dengan meng-override metode `tampilDataPermohonan()` di kelas induk, tapi implemntasinya berbeda pada kelas ini,perannya hanya melakukan pengelolaan data dari tabel permohonan_izin dengan filter unit_kerja = ‘Teknik Informatika’.<br>
+
+           ```php
+        class PermohonanIzinTI extends Database {
+            public function __construct() {
+                parent::__construct();
+            }
+   
+            public function tampilDataPermohonan() {
+                $SQL = "SELECT * FROM permohonan_izin WHERE unit_kerja = 'Teknik Informatika'";
+                $data_permohonan = mysqli_query($this->koneksi, $SQL); 
+                $hasil_data = [];
+                while ($row = mysqli_fetch_array($data_permohonan)) {
+                    $hasil_data[] = $row;
+                }
+                return $hasil_data;
+            }
+        }
+        ```
+       	
+      - **Kelas SuratTugasPelatihan**<br>
+         Menggunakan metode yang sama dengan meng-override metode `tampilDataSuratTugas()` di kelas induk, tapi implementasinya berbeda pada kelas ini,perannya hanya melakukan pengelolaan data dari tabel surat_tugas  dengan filter keperluan= ‘Pelatihan’.<br>
+   ```php
+     <?php
+     include('koneksi.php');
+     class SuratTugasPelatihan extends Database {
+         public function tampilDataSuratTugas() {
+             $SQL = "SELECT * FROM surat_tugas WHERE keperluan = 'Pelatihan'";
+             $data = mysqli_query($this->koneksi, $SQL); 
+             $hasil_data = []; 
+             while ($row = mysqli_fetch_array($data)) {
+                 $hasil_data[] = $row;
+             }
+             return $hasil_data;
+         }
+     }
+     ```
+
+   
 
 DOKUMENTASI OUTPUT<hr>
 - ***Halaman Index yang  berisi navbar 4 menu <br>***
